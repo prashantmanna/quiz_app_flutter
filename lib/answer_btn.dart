@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class answer_btn extends StatelessWidget {
   const answer_btn({super.key , required this.answerText,required this.onTap });
 
@@ -10,7 +10,10 @@ class answer_btn extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
-      child: Text(answerText,style: TextStyle(fontStyle: FontStyle.italic),),
+      child: Text(answerText,style: GoogleFonts.poppins(
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+      ),),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.lightBlueAccent,
         foregroundColor: Colors.black,

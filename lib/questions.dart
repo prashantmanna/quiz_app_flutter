@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/answer_btn.dart';
 import 'data/QuestionsList.dart';
 
@@ -12,14 +13,18 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsWidget extends State<Questions> {
-
   var currQuestionIndex = 0;
 
-  void answerQuestion(){
-    currQuestionIndex++;
+  void answerQuestion() {
+    setState(() {
+      currQuestionIndex++;
+    });
   }
-  final curr_question = QuestionsList[0];
+
+
+
   Widget build(context) {
+    final curr_question = QuestionsList[currQuestionIndex];
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -29,10 +34,17 @@ class _QuestionsWidget extends State<Questions> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           spacing: 10,
           children: [
-            Text(curr_question.text, style: TextStyle(color: Colors.black, fontSize: 20,fontStyle: FontStyle.italic),textAlign: TextAlign.center,),
+            Text(
+              curr_question.text,
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+              ),
+              textAlign: TextAlign.center,
+            ),
             SizedBox(height: 5),
-            ...curr_question.Shuffled().map((item){
-              return answer_btn(answerText: item, onTap: () {});
+            ...curr_question.Shuffled().map((item) {
+              return answer_btn(answerText: item, onTap: answerQuestion);
             }),
             //answer_btn(answerText: curr_question.Answer[0], onTap: () {}),
             //answer_btn(answerText: curr_question.Answer[1], onTap: () {}),
