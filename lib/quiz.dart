@@ -32,7 +32,7 @@ class _QuizWidget extends State<Quiz>{
 
     if(SelectedAnswers.length == QuestionsList.length){
       setState(() {
-        SelectedAnswers = [];
+        //SelectedAnswers = [];
         active_state = ResultScreen(chosenAnswers: SelectedAnswers);
       });
     }

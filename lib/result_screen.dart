@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/HomePage.dart';
 import 'package:quiz_app/data/QuestionsList.dart';
+import 'package:quiz_app/questions_summary.dart';
+import 'package:quiz_app/questions_summary.dart';
 
 class ResultScreen extends StatelessWidget {
   ResultScreen({super.key, required this.chosenAnswers});
@@ -20,20 +24,41 @@ class ResultScreen extends StatelessWidget {
   List<String> chosenAnswers;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+    final summaryData = getData();
+    final totalQuestion = QuestionsList.length;
+    final correctQuestion = summaryData.where((data) {
+      return data["user_Answer"] == data["correct_answer"];
+    }).length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
-        margin: EdgeInsets.all(30),
+        margin: EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("You answered x out of 6 questions correctly!"),
+            Text("You answered  $correctQuestion out of $totalQuestion questions correctly! " ,
+            style: GoogleFonts.poppins(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.bold
+            ),),
             SizedBox(height: 20),
-            Text("List of answers and questions"),
+            QuestionSummary(summaryData),
             SizedBox(height: 20),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomePage(
+                        () {},
+                      );
+                    },
+                  ),
+                );
+              },
               child: Text(
                 "Restart Quiz",
                 style: TextStyle(color: Colors.white),
