@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/questions.dart';
 
 import 'HomePage.dart';
+import 'data/QuestionsList.dart';
 
 class Quiz extends StatefulWidget{
   const Quiz({super.key});
@@ -13,6 +14,8 @@ class Quiz extends StatefulWidget{
 }
 
 class _QuizWidget extends State<Quiz>{
+
+  List<String> SelectedAnswers = [];
   Widget? active_state ;
 
   @override
@@ -22,9 +25,20 @@ class _QuizWidget extends State<Quiz>{
     super.initState();
 
   }
+
+  void chooseAns(String ans){
+    SelectedAnswers.add(ans);
+
+    if(SelectedAnswers.length == QuestionsList.length){
+      setState(() {
+        SelectedAnswers = [];
+        active_state = HomePage(change_state);
+      });
+    }
+  }
   void change_state(){
     setState(() {
-      active_state = Questions();
+      active_state = Questions(onSelectAnswer: chooseAns);
     });
   }
 
