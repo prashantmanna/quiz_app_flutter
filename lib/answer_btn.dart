@@ -10,7 +10,7 @@ class answer_btn extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
-      child: Text(answerText),
+      child: Text(answerText,style: TextStyle(fontStyle: FontStyle.italic),),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.lightBlueAccent,
         foregroundColor: Colors.black,
