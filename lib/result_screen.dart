@@ -4,6 +4,7 @@ import 'package:quiz_app/HomePage.dart';
 import 'package:quiz_app/data/QuestionsList.dart';
 import 'package:quiz_app/questions_summary.dart';
 import 'package:quiz_app/questions_summary.dart';
+import 'package:quiz_app/quiz.dart';
 
 class ResultScreen extends StatelessWidget {
   ResultScreen({super.key, required this.chosenAnswers});
@@ -51,11 +52,7 @@ class ResultScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) {
-                      return HomePage(
-                        () {},
-                      );
-                    },
+                    builder: (ctx) => Quiz(),
                   ),
                 );
               },
