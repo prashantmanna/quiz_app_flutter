@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/questions.dart';
+import 'package:quiz_app/result_screen.dart';
 
 import 'HomePage.dart';
 import 'data/QuestionsList.dart';
@@ -32,7 +33,7 @@ class _QuizWidget extends State<Quiz>{
     if(SelectedAnswers.length == QuestionsList.length){
       setState(() {
         SelectedAnswers = [];
-        active_state = HomePage(change_state);
+        active_state = ResultScreen(chosenAnswers: SelectedAnswers);
       });
     }
   }
